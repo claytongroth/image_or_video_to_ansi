@@ -1,0 +1,12 @@
+[package]
+name = "image_or_video_to_ansi_frames"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+base64 = "0.22.1"
+clap = { version = "4.6.3", features = ["derive"] }
+zune-jpeg = "0.5.15"
+# nothing added yet - `cargo add` whichever you land on yourself.
+# stage 1 (image decode), pick one: zune-jpeg (lighter/manual) or image (batteries-included)
+# later stages: rayon (frame parallelism), gif (gif frame decoding)
