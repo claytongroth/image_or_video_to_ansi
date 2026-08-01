@@ -19,7 +19,6 @@ struct Args {
     output_file_name: String,
 
     /// Also write a minimal standalone HTML file rendering the ANSI art,
-    /// styled the same way claytons-philosophy-notes displays it
     #[arg(long)]
     create_html_output: bool,
 
@@ -106,7 +105,6 @@ fn main() {
 
     // 4. do color somehow
     //   - real color: xterm-256 palette + nearest-color search per cell
-    //     (lib/ansi.js's paletteColor() in claytons-philosophy-notes has
     //     the palette math in the reverse direction, as a reference)
     let colors = utils::pick_colors(&boxes);
 

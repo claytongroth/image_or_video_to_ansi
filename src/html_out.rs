@@ -1,20 +1,9 @@
 use base64::Engine;
 use crate::utils::CHAR_WIDTH_RATIO;
 
-// The exact Consolas font file claytons-philosophy-notes self-hosts (see its
-// app/layout.js, which loads this via next/font/local) - CHAR_WIDTH_RATIO
-// was measured specifically against this font's glyph metrics, so without
-// embedding this same file, a browser without Consolas installed silently
-// falls back to a different monospace font and the whole grid misaligns
-// (rows don't fill the width, gaps appear between rows). include_bytes!
-// compiles the font straight into this binary, so no external file is
-// needed at runtime - the generated HTML embeds it as a data URI below.
+
 const CONSOLAS_WOFF2: &[u8] = include_bytes!("../assets/consolas.woff2");
 
-// Converts an xterm-256 palette index (16-231, the 6x6x6 color cube) back
-// into an actual (r, g, b) color a browser can render - this is the exact
-// reverse of the "quantize" math in pick_colors, and mirrors paletteColor()
-// in claytons-philosophy-notes/lib/ansi.js (same formula, opposite direction).
 fn palette_index_to_rgb(index: u8) -> (u8, u8, u8) {
     // undo the "+16" offset from pick_colors to get back to a 0-215 cube position
     let code = (index as u32) - 16;
@@ -28,12 +17,7 @@ fn palette_index_to_rgb(index: u8) -> (u8, u8, u8) {
     ((r_step * 51) as u8, (g_step * 51) as u8, (b_step * 51) as u8)
 }
 
-// Writes a minimal, self-contained HTML file that renders the ANSI grid the
-// same way claytons-philosophy-notes does it: one <div class="ansi-line">
-// per row, one <span> per cell colored via inline style, all inside a <pre>
-// so spacing is preserved exactly. The CSS below is copied straight out of
-// that site's app/globals.css (.ansi-frame/.ansi-pre/.ansi-line rules), so
-// this file renders the same without needing the rest of that site.
+// Writes a minimal, self-contained HTML file that renders the ANSI grid 
 pub fn write_html_output(colors: &Vec<Vec<(u8, char)>>, cols: usize, path: &str) {
     // same character-cell aspect-ratio number used earlier to pick `rows` -
     // now used to size the font so `cols` characters exactly fill the page

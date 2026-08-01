@@ -1,7 +1,4 @@
-// Consolas glyph advance width relative to font-size, measured in
-// claytons-philosophy-notes (lib/ansi.js / AnsiArt.js) - a character cell is
-// this many units wide for every 1 unit tall, so boxes must be taller than
-// wide by the same ratio or the output looks squished.
+// Consolas glyph advance width relative to font-size
 pub const CHAR_WIDTH_RATIO: f32 = 0.5498;
 
 // boxes[cell_y][cell_x] vector boxes to hold every source-pixel triplet that falls into
@@ -163,7 +160,6 @@ pub fn print_grid(colors: &Vec<Vec<(u8, char)>>, path: &str) {
     print!("{}", output);
 
     // this is the actual deliverable - a real .ans file, same as the ones
-    // committed under claytons-philosophy-notes/content/ansi/*.ans
     std::fs::write(path, &output).unwrap();
     println!("wrote ANSI output to {}", path);
 }

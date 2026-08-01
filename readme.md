@@ -8,7 +8,7 @@ A standalone Rust CLI that converts an image into xterm-256 ANSI art — decode 
 | :---: | :---: |
 | ![source image](test_data/eagle.jpeg) | ![ansi rendered output](test_data/example_eagle.png) |
 
-The right image is a real screenshot of this tool's `--create-html-output` file, rendered with the same CSS the philosophy-notes site uses to display its ANSI art in a browser. Viewed directly in a terminal, `test_data/output.ansi` renders with real ANSI escape codes and looks even sharper.
+The right image is a screenshot of this tool's output. 
 
 ## Usage
 
@@ -29,7 +29,7 @@ cargo run -- \
 
 - `--image-or-video-file` — path to the source JPEG (defaults to `./test_data/test.jpeg`)
 - `--output-file-name` — where the raw ANSI-escaped `.ansi` text gets written (defaults to `./test_data/output.ansi`)
-- `--create-html-output` — also emit a self-contained HTML file that renders the same grid in a browser, styled like the philosophy-notes site
+- `--create-html-output` — also emit a self-contained HTML file that renders the same grid in a browser, styling added.
 - `--html-output-file` — where that HTML file gets written (defaults to `./test_data/output.html`)
 
 ## How it works
