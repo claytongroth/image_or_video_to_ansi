@@ -38,10 +38,7 @@ pub fn write_html_output(colors: &Vec<Vec<(u8, char)>>, cols: usize, path: &str)
                 "<span style=\"color: rgb({r},{g},{b}); background-color: rgb({r},{g},{b});\">{glyph}</span>"
             ));
         }
-        // no trailing \n here - .ansi-pre uses white-space: pre, which
-        // renders literal newline characters as actual blank lines. The
-        // <div>s are already block-level so they stack on their own line
-        // regardless; an extra \n between them just adds a visible gap.
+        // no trailing \n here - .ansi-pre uses white-space:
         rows_html.push_str(&format!("<div class=\"ansi-line\">{row_html}</div>"));
     }
 

@@ -27,24 +27,6 @@ struct Args {
     html_output_file: String,
 }
 
-// Loose starting scaffold only - no logic here on purpose, this is yours to
-// build. See ../proj_ideas_to_learn_rust.md for the full staged plan. What's
-// below just sketches the *shape* of stage 1 (single image -> a grid of
-// characters printed to stdout, no color, no video yet). Everything else
-// (real xterm-256 color, video/gif frames, rayon parallelism) comes later,
-// once this smallest version actually runs.
-//
-// Candidate crates for image decode (pick one yourself via `cargo add`,
-// don't just grab both):
-//   - zune-jpeg   lighter, more manual, probably the better learning pick
-//   - image       batteries-included, hides more of the interesting part
-//
-// Crates you'll probably want in later stages, not yet:
-//   - rayon       parallel iterators - for frame-level parallelism, once
-//                 sequential frame-by-frame conversion already works
-//   - gif         GIF frame decoding, once you get to the video/animation
-//                 stage (see the "why video" section in the plan doc)
-
 fn main() {
     // 1. Read CLI args: path to the image, target width in character
     //    columns, maybe a mode flag. std::env::args() gives you an
